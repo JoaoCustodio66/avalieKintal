@@ -1,0 +1,1 @@
+ALTER TABLE feedbacks DROP COLUMN table_number;

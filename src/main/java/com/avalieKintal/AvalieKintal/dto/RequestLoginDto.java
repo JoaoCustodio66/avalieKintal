@@ -1,4 +1,11 @@
 package com.avalieKintal.AvalieKintal.dto;
 
-public class RequestLoginDto {
-}
+import jakarta.validation.constraints.NotBlank;
+
+public record RequestLoginDto(
+        @NotBlank
+        String phone,
+
+        @NotBlank
+        String password
+) {}

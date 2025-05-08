@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/login")
 public class AuthController {
 
     private final UserRepository userRepository;
@@ -23,9 +23,9 @@ public class AuthController {
         this.tokenService = tokenService;
     }
 
-    @PostMapping("/login")
+    @PostMapping()
     public ResponseApi login(@RequestBody RequestLoginDto loginRequest) {
-        User user = userRepository.findByPhone(loginRequest.phone())
+        User user = userRepository.findByEmail(loginRequest.email())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!passwordEncoder.matches(loginRequest.password(), user.getPassword())) {

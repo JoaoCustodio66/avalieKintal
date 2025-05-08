@@ -9,6 +9,8 @@ import com.avalieKintal.AvalieKintal.repository.FeedbackRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FeedbackService {
@@ -24,6 +26,12 @@ public class FeedbackService {
         feedback.setSubmittedAt(LocalDateTime.now());
         ResponseFeedbackDto responseDto = FeedbackMapper.toDto(repository.save(feedback));
         return ResponseApi.success("Success",responseDto);
+    }
+
+    public ResponseApi findAll(){
+        List<Feedback> feedbacks = repository.findAll();
+        List<ResponseFeedbackDto> dto = feedbacks.stream().map(FeedbackMapper::toDto).toList();
+        return ResponseApi.success("Success", dto);
     }
 }
 

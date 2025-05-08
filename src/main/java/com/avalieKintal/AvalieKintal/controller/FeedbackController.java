@@ -2,10 +2,12 @@ package com.avalieKintal.AvalieKintal.controller;
 
 import com.avalieKintal.AvalieKintal.dto.RequestFeedbackDto;
 import com.avalieKintal.AvalieKintal.dto.ResponseApi;
+import com.avalieKintal.AvalieKintal.dto.ResponseFeedbackDto;
 import com.avalieKintal.AvalieKintal.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,12 @@ public class FeedbackController {
     @PostMapping
     public ResponseEntity<ResponseApi> create(@RequestBody RequestFeedbackDto dto){
         ResponseApi response = feedbackService.save(dto);
+        return ResponseEntity.status(response.status()).body(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<ResponseApi> findAll(){
+        ResponseApi response = feedbackService.findAll();
         return ResponseEntity.status(response.status()).body(response);
     }
 }

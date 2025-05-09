@@ -23,7 +23,7 @@ public class AuthController {
         this.tokenService = tokenService;
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseApi login(@RequestBody RequestLoginDto loginRequest) {
         User user = userRepository.findByEmail(loginRequest.email())
                 .orElseThrow(() -> new RuntimeException("User not found"));

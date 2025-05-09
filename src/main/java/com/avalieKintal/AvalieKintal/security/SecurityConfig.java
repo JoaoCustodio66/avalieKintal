@@ -66,7 +66,6 @@ public class SecurityConfig {
         return source;
     }
 
-
     @Bean
     public JwtEncoder jwtEncoder() {
         JWK jwk = new RSAKey.Builder(publicKey)

@@ -25,8 +25,15 @@ public class FeedbackController {
     }
 
     @GetMapping
-    public ResponseEntity<ResponseApi> findAll(){
+    public ResponseEntity<ResponseApi> getAll(){
         ResponseApi response = feedbackService.findAll();
         return ResponseEntity.status(response.status()).body(response);
     }
+
+    @GetMapping("/Rating")
+    public ResponseEntity<ResponseApi> getRating(){
+        ResponseApi response = feedbackService.findRating();
+        return ResponseEntity.status(response.status()).body(response);
+    }
+
 }
